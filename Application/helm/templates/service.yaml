@@ -2,12 +2,12 @@ kind: Service
 apiVersion: v1
 metadata:
 # Set your user name
-  name: zoharharuv-hello-world
+  name: {{ .Chart.Name }}-service
 spec:
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
+      port: {{ .Values.service.servicePort }}
+      targetPort: {{ .Values.containers.containerPort }}
   selector:
 # Set your user name
-    app: zoharharuv-hello-world
+    app: {{ .Chart.Name }}
