@@ -2,8 +2,8 @@ ReplicaNumber: 3
 
 containers:
   containerPort: 8080
-  image: 'quay.io/zoharharuv/argocd:v3'
-  tag: 'base'
+  image: 'quay.io/zoharharuv/argocd'
+  tag: 'chart_v1'
 
 service:
   servicePort: 8080
