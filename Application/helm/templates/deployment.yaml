@@ -30,7 +30,7 @@ spec:
           env:
             - name: PORT
               value: {{ .Values.containers.containerPort | quote }}
-              readinessProbe:
+          readinessProbe:
                     httpGet:
                       path: /health/readiness # this check the application url path
                       port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
@@ -40,7 +40,7 @@ spec:
                     periodSeconds: 10 # the abount of time to wait between checks
                     successThreshold: 1 # count to decalre seccessfull 
                     failureThreshold: 3 # count to decalre failure 
-              livenessProbe:
+          livenessProbe:
                       httpGet:
                         path: /health/liveliness
                         port: {{ .Values.containers.containerPort }}
