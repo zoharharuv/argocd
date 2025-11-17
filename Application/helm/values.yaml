@@ -1,4 +1,4 @@
-ReplicaNumber: 3
+ReplicaNumber: 1
 
 containers:
   containerPort: 8080
