@@ -21,15 +21,15 @@ spec:
             name: '{{ .Chart.Name }}-html'
             defaultMode: 420
       containers:    
-        - env:
-            name: {{ .Values.containers.containerPort }}
-            value: {{ .Values.containers.containerPort | quote }}  
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
           ports:
             - containerPort: {{ .Values.containers.containerPort }}
               protocol: TCP
+          env:
+            - name: CONTAINER_PORT
+              value: {{ .Values.containers.containerPort | quote }}
           imagePullPolicy: IfNotPresent
 # Update with the image you build in part 1
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
