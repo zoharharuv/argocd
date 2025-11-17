@@ -30,15 +30,7 @@ spec:
           env:
             - name: PORT
               value: {{ .Values.containers.containerPort | quote }}
-          imagePullPolicy: IfNotPresent
-# Update with the image you build in part 1
-          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
-          volumeMounts:
-          - name: index-html
-            mountPath: /tmp/html 
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      readinessProbe:
+              readinessProbe:
                     httpGet:
                       path: /health/readiness # this check the application url path
                       port: {{ .Values.containers.containerPort  }} # In which port the Application is listening
@@ -48,7 +40,7 @@ spec:
                     periodSeconds: 10 # the abount of time to wait between checks
                     successThreshold: 1 # count to decalre seccessfull 
                     failureThreshold: 3 # count to decalre failure 
-      livenessProbe:
+              livenessProbe:
                       httpGet:
                         path: /health/liveliness
                         port: {{ .Values.containers.containerPort }}
@@ -58,7 +50,14 @@ spec:
                       periodSeconds: 10
                       successThreshold: 1
                       failureThreshold: 3
-
+          imagePullPolicy: IfNotPresent
+# Update with the image you build in part 1
+          image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
+          volumeMounts:
+          - name: index-html
+            mountPath: /tmp/html 
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
   strategy:
     type: RollingUpdate
     rollingUpdate:
