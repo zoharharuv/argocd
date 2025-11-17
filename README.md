@@ -1,7 +1,3 @@
-Here is the **complete README.md file**, ready to paste directly into your GitHub repo:
-
----
-
 # ArgoCD + Helm Deployment on OpenShift
 
 ### Training Project – Red Hat OpenShift & GitOps Workshop
