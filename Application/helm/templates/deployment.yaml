@@ -22,8 +22,8 @@ spec:
             defaultMode: 420
       containers:    
         - env:
-                      - name: {{ .Values.containers.containerPort }}
-                        value: {{ .Values.containers.containerPort | quote }}  
+            name: {{ .Values.containers.containerPort }}
+            value: {{ .Values.containers.containerPort | quote }}  
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
