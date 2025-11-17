@@ -20,7 +20,10 @@ spec:
           configMap:
             name: '{{ .Chart.Name }}-html'
             defaultMode: 420
-      containers:        
+      containers:    
+        - env:
+                      - name: {{ .Values.containers.containerPort }}
+                        value: {{ .Values.containers.containerPort | quote }}  
         - resources: {}
           terminationMessagePath: /dev/termination-log
           name: {{ .Chart.Name }}
@@ -55,9 +58,7 @@ spec:
                       periodSeconds: 10
                       successThreshold: 1
                       failureThreshold: 3
-      env:
-                      - name: {{ .Values.containers.containerPort }}
-                        value: {{ .Values.containers.containerPort | quote }}
+
   strategy:
     type: RollingUpdate
     rollingUpdate:
